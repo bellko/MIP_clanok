@@ -1,125 +1,92 @@
-% Metódy inžinierskej práce
-
-\documentclass[10pt,twoside,slovak,a4paper]{coursepaper}
+\documentclass[12pt,twoside,slovak,a4paper]{article}
 
 \usepackage[slovak]{babel}
-%\usepackage[T1]{fontenc}
-\usepackage[IL2]{fontenc} % lepšia sadzba písmena Ľ než v T1
+\usepackage[IL2]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
-\usepackage{url} % príkaz \url na formátovanie URL
-\usepackage{hyperref} % odkazy v texte budú aktívne (pri niektorých triedach dokumentov spôsobuje posun textu)
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{indentfirst}
 
 \usepackage{cite}
-%\usepackage{times}
+
+\usepackage[left=2cm, right=2cm, top=3cm, bottom=3cm, bindingoffset=1cm]{geometry}
 
 \pagestyle{headings}
 
-\title{Názov\thanks{Semestrálny projekt v predmete Metódy inžinierskej práce, ak. rok 2015/16, vedenie: Vladimír Mlynarovic}}
+\title{Modelovanie UI pomocou jazyka IFML\thanks{Semestrálny projekt v predmete Metódy inžinierskej práce, ak. rok 2021/22, vedenie: Vladimír Mlynarovic}}
 
 \author{Daniel Belko\\[2pt]
 	{\small Slovenská technická univerzita v Bratislave}\\
 	{\small Fakulta informatiky a informačných technológií}\\
-	{\small \texttt{...@stuba.sk}}
+	{\small \texttt{xbelkod@stuba.sk}}
 	}
 
 \date{\small 12. október 2021}
 
 \begin{document}
 
-
-
 \maketitle
 
 \begin{abstract}
-\ldots
+
 \end{abstract}
 
 
 
-\section{Úvod}
+\section{Čo je IFML}
 
-Motivujte čitateľa a vysvetlite, o čom píšete. Úvod sa väčšinou nedelí na časti.
+IFML alebo Interactive Flow Modeling Language je vizuálny modelovací jazyk určený pre návrh UI a UX mobilných a webových aplikácii. Cieľom IFML je založiť štandard pre navrhovanie používateľského rozhrania aplikácie a logiku daného rozhrania. Veľkou inspiráciou pre syntax IFML bol modelovací WebML z ktorého bol prebratý koncept kontajnerizácie jednotlivých vrstiev aplikácie a niektoré ďalšie prvky. Výhodou IFML je že jeho prvky sú veľmi všeobecné, čo znamená že sa da využiť na vývoj UI/UX nezávisle od koncovej platformy aplikácie.\cite{BF:IFML}
 
-Uveďte explicitne štruktúru článku. Tu je nejaký príklad.
-Základný problém, ktorý bol naznačený v úvode, je podrobnejšie vysvetlený v časti~\ref{nejaka}.
-Dôležité súvislosti sú uvedené v častiach~\ref{dolezita} a~\ref{dolezitejsia}.
-Záverečné poznámky prináša časť~\ref{zaver}.
+\section{Čo dokáže IFML}
 
+Keďže IFML má zjednodušené a všeobecné prvky, to znamená že aj modely budú tak isto všeobecné. Čo modely obmedzuje na jednoduché javy, a prechod z jedného kontajnera na ďalší (príklady tohto správania budú neskôr v článku ukázane). To znamená aj že sa pomocou IFML nedá spraviť model komplexných javov, ako napríklad: reťazce operácii.
 
+\clearpage
 
-\section{Nejaká časť} \label{nejaka}
-
-Z obr.~\ref{f:rozhod} je všetko jasné. 
-
-\begin{figure*}[tbh]
-\centering
-%\includegraphics[scale=1.0]{diagram.pdf}
-Aj text môže byť prezentovaný ako obrázok. Stane sa z neho označný plávajúci objekt. Po vytvorení diagramu zrušte znak \texttt{\%} pred príkazom \verb|\includegraphics| označte tento riadok ako komentár (tiež pomocou znaku \texttt{\%}).
-\caption{Rozhodujúci argument.}
-\label{f:rozhod}
-\end{figure*}
-
-\section{Nová časť}
-
-
-\section{Iná časť} \label{ina}
-
-Základným problémom je teda\ldots{} Najprv sa pozrieme na nejaké vysvetlenie (časť~\ref{ina:nejake}), a potom na ešte nejaké (časť~\ref{ina:nejake}).\footnote{Niekedy môžete potrebovať aj poznámku pod čiarou.}
-
-Môže sa zdať, že problém vlastne nejestvuje\cite{Coplien:MPD}, ale bolo dokázané, že to tak nie je~\cite{Czarnecki:Staged, Czarnecki:Progress}. Napriek tomu, aj dnes na webe narazíme na všelijaké pochybné názory\cite{PLP-Framework}. Dôležité veci možno \emph{zdôrazniť kurzívou}.
-
-
-\subsection{Nejaké vysvetlenie} \label{ina:nejake}
-
-Niekedy treba uviesť zoznam:
-
-\begin{itemize}
-\item jedna vec
-\item druhá vec
-	\begin{itemize}
-	\item x
-	\item y
-	\end{itemize}
-\end{itemize}
-
-Ten istý zoznam, len číslovaný:
+\section{Jednotlivé prvky IMFL}
 
 \begin{enumerate}
-\item jedna vec
-\item druhá vec
-	\begin{enumerate}
-	\item x
-	\item y
-	\end{enumerate}
+	\item \textbf{Cointainer}
+	\begin{itemize}
+		\item Prvok ktorý kategorizuje ostatne prvky, môže obsahovať aj ďalšie kontajnery. Napr.: web stránka.
+	\end{itemize}
+	\item \textbf{View component}
+	\begin{itemize}
+		\item Vizuálny prvok ktorý niečo ukazuje alebo prijíma vstup. Napr.: Listina kontaktov alebo pole vyhľadávania v prehliadači.
+	\end{itemize}
+	\item \textbf{Event}
+	\begin{itemize}
+		\item Jav ktorý zmení stav aplikácie. Napr.: Používateľ klikol na obrázok v galérii a aplikácia priblíži na obrázok.
+	\end{itemize}
+	\item \textbf{Action}
+	\begin{itemize}
+		\item Jav ktorý nevykoná UI ale aplikačná logika. Napr.: Odoslanie mailu.
+	\end{itemize}
+	\item \textbf{Navigation flow}
+	\begin{itemize}
+		\item Ukazuje z ktorého kontajnera sa vieme dostáť kam a cez aký jav.
+	\end{itemize}
+	\item \textbf{Data flow}
+	\begin{itemize}
+		\item Ukazuje do ktorého prvku smerujú údaje.
+	\end{itemize}
+	\item \textbf{Parameter binding group}
+	\begin{itemize}
+		\item Zoskupí dôležité parametre (metadata) jednotlivých údajov.
+	\end{itemize}
 \end{enumerate}
 
+\clearpage
 
-\subsection{Ešte nejaké vysvetlenie} \label{ina:este}
+\section{Ukážkový model IFML}
 
-\paragraph{Veľmi dôležitá poznámka.}
-Niekedy je potrebné nadpisom označiť odsek. Text pokračuje hneď za nadpisom.
+\subsection{Model}
 
+\includegraphics[scale=0.585]{model.pdf}
 
+\subsection{Vysvetlenie}
 
-\section{Dôležitá časť} \label{dolezita}
-
-
-
-
-\section{Ešte dôležitejšia časť} \label{dolezitejsia}
-
-
-
-
-\section{Záver} \label{zaver} % prípadne iný variant názvu
-
-
-
-%\acknowledgement{Ak niekomu chcete poďakovať\ldots}
-
-
-% týmto sa generuje zoznam literatúry z obsahu súboru literatura.bib podľa toho, na čo sa v článku odkazujete
 \bibliography{literatura}
-\bibliographystyle{alpha} % prípadne alpha, abbrv alebo hociktorý iný
+\bibliographystyle{alpha}
 \end{document}
