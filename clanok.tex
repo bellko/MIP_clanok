@@ -1,4 +1,4 @@
-\documentclass[12pt,twoside,slovak,a4paper]{article}
+\documentclass[12pt,slovak,a4paper]{article}
 
 \usepackage[slovak]{babel}
 \usepackage[IL2]{fontenc}
@@ -30,26 +30,60 @@
 
 \begin{abstract}
 
+	Cieľom tohto článku je opísať proces tvorby IFML modelu a slúžiť ako návod pre realizovanie základného projektu pomocou IFML. Najprv si povieme čo IFML vlastne je a ako sa používa.  Potom si ukážeme základný model vytvorený v IFML pomocou ktorého bude aj znázornené použitie jednotlivých prvkov. A nakoniec si ukážeme niektoré nástroje ktoré nám umožňujú pracovať s modelmi a realizovať ich.
+
 \end{abstract}
 
+\section{Úvod}
 
+\subsection{Čo je IFML}
 
-\section{Čo je IFML}
+IFML alebo Interactive Flow Modeling Language je vizuálny modelovací jazyk určený pre návrh UI a UX mobilných a webových aplikácii. Cieľom IFML je založiť štandard pre navrhovanie používateľského rozhrania aplikácie a logiku daného rozhrania. Veľkou inspiráciou pre syntax IFML bol modelovací WebML z ktorého bol prebratý koncept kontajnerizácie jednotlivých vrstiev aplikácie a niektoré ďalšie prvky. Výhodou IFML je že jeho prvky sú veľmi všeobecné, čo znamená že sa da využiť na vývoj UI/UX nezávisle od koncovej platformy aplikácie.
+\cite{BF:IFML}
 
-IFML alebo Interactive Flow Modeling Language je vizuálny modelovací jazyk určený pre návrh UI a UX mobilných a webových aplikácii. Cieľom IFML je založiť štandard pre navrhovanie používateľského rozhrania aplikácie a logiku daného rozhrania. Veľkou inspiráciou pre syntax IFML bol modelovací WebML z ktorého bol prebratý koncept kontajnerizácie jednotlivých vrstiev aplikácie a niektoré ďalšie prvky. Výhodou IFML je že jeho prvky sú veľmi všeobecné, čo znamená že sa da využiť na vývoj UI/UX nezávisle od koncovej platformy aplikácie.\cite{BF:IFML}
+\subsection{Čo IFML dokáže}
 
-\section{Čo dokáže IFML}
-
-Keďže IFML má zjednodušené a všeobecné prvky, to znamená že aj modely budú tak isto všeobecné. Čo modely obmedzuje na jednoduché javy, a prechod z jedného kontajnera na ďalší (príklady tohto správania budú neskôr v článku ukázane). To znamená aj že sa pomocou IFML nedá spraviť model komplexných javov, ako napríklad: reťazce operácii.
+Keďže IFML má zjednodušené a všeobecné prvky, to znamená že aj modely budú tak isto všeobecné. Čo modely obmedzuje na jednoduché javy, a prechod z jedného kontajnera na ďalší (príklady tohto správania budú neskôr v článku ukázane). To znamená aj že sa pomocou IFML nedá spraviť model komplexných operácii, ako napríklad: reťazce javov.
+\cite{MB:Intro}
 
 \clearpage
 
-\section{Jednotlivé prvky IMFL}
+\section{Ukážkový model IFML}
+
+\subsection{Model}
+
+\begin{figure}[h]
+	\includegraphics[scale=0.585]{model.pdf}
+	\caption{Prikladový model\cite{IFML:Edit}}		
+\end{figure}
+
+
+\subsection{Jednotlivé prvky IFML}
+
+Prvky v IMFL sú buď vizuálne alebo logické, teda buď rozhodujú o tom čo je vidno na obrazovke používateľa alebo vykonávajú proces v pozadí.\\
+
+Členenie prvkov:
+
+\begin{center}
+
+	\begin{tabular}{c c}
+
+		\textbf{Cointainer} & vizuálny\\
+		\textbf{View component} & vizuálny\\
+		\textbf{Event} & vizuálny aj logický\\
+		\textbf{Action} & logický\\
+		\textbf{Navigation flow} & logické\\
+		\textbf{Data flow} & logický\\
+		\textbf{Parameter binding group} & logický\\
+
+	\end{tabular}
+
+\end{center}
 
 \begin{enumerate}
 	\item \textbf{Cointainer}
 	\begin{itemize}
-		\item Prvok ktorý kategorizuje ostatne prvky, môže obsahovať aj ďalšie kontajnery. Napr.: web stránka.
+		\item Prvok ktorý kategorizuje ostatne prvky, môže obsahovať aj ďalšie kontajnery. Napr.: Body tag HTML dokumentu.
 	\end{itemize}
 	\item \textbf{View component}
 	\begin{itemize}
@@ -77,15 +111,17 @@ Keďže IFML má zjednodušené a všeobecné prvky, to znamená že aj modely b
 	\end{itemize}
 \end{enumerate}
 
+\subsection{Vysvetlenie modelu}
+
 \clearpage
 
-\section{Ukážkový model IFML}
+\section{Nástroje}
 
-\subsection{Model}
+\subsection{Eclipse IFML Editor}
 
-\includegraphics[scale=0.585]{model.pdf}
+\subsection{Online editor}
 
-\subsection{Vysvetlenie}
+\section{Realizácia navrhnutého modelu}
 
 \bibliography{literatura}
 \bibliographystyle{alpha}
